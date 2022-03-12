@@ -46,16 +46,20 @@ class SearchPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            margin: const EdgeInsets.symmetric(horizontal: 15),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   child: Row(
                     children: const [
-                      Icon(Icons.location_on_outlined),
-
+                      Icon(Icons.location_on_outlined,color: Color(0xffffffff),size: 20),
+                      Text('Ismailia, Egypt',style: TextStyle(fontSize: 17,fontWeight: FontWeight.w400,color: Color(0xFFFFFFFF),letterSpacing: 1),)
                     ],
                   ),
-                )
+                ),
+                const Icon(Icons.search_rounded,color: Color(0xffffffff),size: 25)
               ],
             ),
           ),
@@ -221,3 +225,7 @@ class ShowWeather extends StatelessWidget {
     );
   }
 }
+
+
+//token
+//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

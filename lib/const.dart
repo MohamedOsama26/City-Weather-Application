@@ -5,8 +5,8 @@ LinearGradient sunnyBackground (){
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
       colors: [
-        Color(0xFFFF8608),
-        Color(0xFFFF7300),
+        Color(0xFFFFC208),
+        Color(0xFFFF9400),
       ]
   );
 }
