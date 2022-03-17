@@ -1,6 +1,6 @@
 import 'package:city_weather/data/weather_repo.dart';
 import 'package:equatable/equatable.dart';
-import '../data/weather_model.dart';
+import '../../data/weather_model.dart';
 import 'package:bloc/bloc.dart';
 
 part 'weather_event.dart';

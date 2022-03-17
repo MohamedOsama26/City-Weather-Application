@@ -1,10 +1,11 @@
 import 'package:city_weather/const.dart';
+import 'package:city_weather/data/location_reop.dart';
 import 'package:city_weather/data/weather_model.dart';
 import 'package:city_weather/data/weather_repo.dart';
-import 'package:city_weather/logic/weather_bloc.dart';
+import 'package:city_weather/logic/location/location_bloc.dart';
+import 'package:city_weather/logic/weather/weather_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flare_flutter/flare_actor.dart';
 import 'package:rive/rive.dart';
 
 void main() {
@@ -24,10 +25,18 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: BlocProvider(
-          create: (context) => WeatherBloc(WeatherRepo()),
+        body: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => WeatherBloc(WeatherRepo()),
+            ),
+            BlocProvider(
+              create: (context) => LocationBloc(LocationRepo()),
+            )
+          ],
           child: SearchPage(),
         ),
+
       ),
     );
   }
@@ -42,7 +51,7 @@ class SearchPage extends StatelessWidget {
         gradient: sunnyBackground()
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
@@ -65,7 +74,7 @@ class SearchPage extends StatelessWidget {
           ),
           const Center(
             child: SizedBox(
-              child: RiveAnimation.asset('assets/sunny.riv',
+              child: RiveAnimation.asset('assets/mist.riv',
                 animations: ['Animation 1'],
               ),
 
@@ -74,6 +83,26 @@ class SearchPage extends StatelessWidget {
               width: 260,
             ),
           ),
+
+          BlocBuilder<LocationBloc,LocationState>(builder: (context, state) {
+            if(state is LocationInitial){
+              BlocProvider.of<LocationBloc>(context).add(FetchLocation());
+            }
+            else if (state is LocationIsLoaded ){
+              print(state.getLocation);
+              return Center(child: Text(state.getLocation.toString()));
+            }
+             {
+              // print(repo.getLocation());
+              return const Text(
+                'Error',
+                style: TextStyle(color: Colors.white),
+              );
+            }
+          }
+    ),
+
+
           BlocBuilder<WeatherBloc, WeatherState>(builder: (context, state) {
             if (state is WeatherIsNotSearched) {
               return Container(
