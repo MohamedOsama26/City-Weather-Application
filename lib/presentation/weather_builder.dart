@@ -1,5 +1,5 @@
 import 'package:city_weather/logic/weather/weather_bloc.dart';
-import 'package:city_weather/main.dart';
+import 'package:city_weather/presentation/weather_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,14 +12,21 @@ class WeatherBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BlocBuilder<WeatherBloc, WeatherState>(builder: (context, state) {
+
+      // Wait to fetch weather by position display search box
       if (state is WeatherIsNotSearched) {
+        print('Hello');
+        // See is location detected or not, if location detected ask weather bloc to get weather by position
         if (long != null || lat != null) {
           BlocProvider.of<WeatherBloc>(context)
               .add(FetchWeatherByPosition(lat!, long!));
-          print('I am here');
-          return Text('data');
-        } else {
+          return const SizedBox();
+        }
+
+        // if location is not detected display search box
+        else {
           return Container(
             padding: const EdgeInsets.only(left: 32, right: 32),
             child: Column(
@@ -82,16 +89,26 @@ class WeatherBuilder extends StatelessWidget {
             ),
           );
         }
-      } else if (state is WeatherIsLoading) {
+      }
+
+      // Displayed while fetching weather data
+      else if (state is WeatherIsLoading) {
         return const Center(
           child: CircularProgressIndicator(),
         );
-      } else if (state is WeatherIsLoaded) {
+      }
+
+      // Send data of result even it was by search or detected location to display
+      else if (state is WeatherIsLoaded) {
         return ShowWeather(
           currentWeatherModel: state.getWeather,
           city: cityController.text,
         );
-      } else {
+      }
+
+      //Display there is something went wrong while fetching data
+      else {
+        print('                Here                  ');
         print(state);
         return const Text(
           'Error',

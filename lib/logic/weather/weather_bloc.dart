@@ -33,7 +33,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
         print('number 3 ====>  ${event._lat} , ${event._long}');
         final weather = await weatherRepo.getCurrentWeatherByPosition(
             long: event._long, lat: event._lat);
-        print(weather);
+        print(weather.dataCalculatingTime);
         emit(WeatherIsLoaded(weather));
       } catch (_) {
         print('number 4');

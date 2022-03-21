@@ -26,10 +26,8 @@ class WeatherRepo {
 
   CurrentWeatherModel parsedJson(final response) {
     final jsonDecoded = json.decode(response);
-    final jsonWeather = jsonDecoded['main'];
     print(jsonDecoded);
     print('=======');
-    print(jsonWeather);
-    return CurrentWeatherModel.fromJson(jsonWeather);
+    return CurrentWeatherModel.fromJson(jsonDecoded);
   }
 }
