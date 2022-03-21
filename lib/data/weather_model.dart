@@ -1,4 +1,4 @@
-class WeatherModel {
+class CurrentWeatherModel {
   final double temp;
   final int humidity;
   final double tempMax;
@@ -9,15 +9,15 @@ class WeatherModel {
   double get getMaxTemp => tempMax - 272.5;
   double get getMinTemp => tempMin - 272.5;
 
-  WeatherModel(
+  CurrentWeatherModel(
       {required this.humidity,
       required this.pressure,
       required this.temp,
       required this.tempMax,
       required this.tempMin});
 
-  factory WeatherModel.fromJson(Map<String, dynamic> json) {
-    return WeatherModel(
+  factory CurrentWeatherModel.fromJson(Map<String, dynamic> json) {
+    return CurrentWeatherModel(
       humidity: json['humidity'],
       pressure: json['pressure'],
       temp: json['temp'] as double,

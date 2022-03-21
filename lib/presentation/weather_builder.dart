@@ -88,7 +88,7 @@ class WeatherBuilder extends StatelessWidget {
         );
       } else if (state is WeatherIsLoaded) {
         return ShowWeather(
-          weatherModel: state.getWeather,
+          currentWeatherModel: state.getWeather,
           city: cityController.text,
         );
       } else {
