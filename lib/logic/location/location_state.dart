@@ -21,12 +21,3 @@ class LocationIsLoaded extends LocationState {
 }
 
 class LocationIsDisabled extends LocationState {}
-
-// class AddressIsLoaded extends LocationState {
-//   final Placemark _details;
-//   AddressIsLoaded(this._details);
-//   Placemark get getAddress => _details;
-//
-//   @override
-//   List<Object> get props => [_details];
-// }

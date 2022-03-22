@@ -19,14 +19,13 @@ class WeatherIsLoaded extends WeatherState {
   List<Object> get props => [_weather];
 }
 
-class WeatherIsNotLoaded extends WeatherState {}
+class WeatherIsNotLoaded extends WeatherState {
+  final String _error;
 
+  WeatherIsNotLoaded(this._error);
 
+  String get getError => _error;
 
-class NoLocation extends WeatherState {} // this state will be used when the GPS is closed and user did not searched about the place
-
-class FoundLocationLoadingWeather extends WeatherState {} // this state will be used when location is found and searching for weather
-
-class FoundLocationLoadedWeather extends WeatherState {} // this state will be used when the location is found even by GPS or manual search and found the weather to display it
-
-class NoWeather extends WeatherState {}
+  @override
+  List<Object> get props => [_error];
+}

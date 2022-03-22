@@ -13,6 +13,7 @@ class LocationRepo {
       // Location services are not enabled don't continue
       // accessing the position and request users of the
       // App to enable the location services.
+      // showAlertDialog(context);
       await Geolocator.openLocationSettings();
       return Future.error('Location services are disabled.');
     }
@@ -35,8 +36,6 @@ class LocationRepo {
     }
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
-    print(await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high));
     return await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
   }

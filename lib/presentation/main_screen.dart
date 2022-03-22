@@ -1,4 +1,4 @@
-import 'package:city_weather/const.dart';
+import 'package:city_weather/components/const.dart';
 import 'package:city_weather/data/location_reop.dart';
 import 'package:city_weather/logic/location/location_bloc.dart';
 import 'package:city_weather/presentation/weather_builder.dart';
@@ -19,12 +19,14 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(gradient: sunnyBackground()),
+      width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BlocBuilder<LocationBloc, LocationState>(
             builder: (context, state) {
+
               // Loading to find Location
               if (state is LocationInitial) {
                 BlocProvider.of<LocationBloc>(context).add(FetchLocation());
@@ -44,7 +46,7 @@ class _MainScreenState extends State<MainScreen> {
               }
 
               // display Weather Builder Widget without sending location, and display button asking to open GPS
-              else {
+              else if (state is LocationIsDisabled) {
                 return Column(
                   children: [
                     WeatherBuilder(),
@@ -53,12 +55,15 @@ class _MainScreenState extends State<MainScreen> {
                       onPressed: () {
                         BlocProvider.of<LocationBloc>(context)
                             .add(FetchLocation());
-                        print(
-                            "===============> Found Here Point 2 <===============");
                       },
                     ),
                   ],
                 );
+              }
+
+              // Otherwise, location is loading
+              else {
+                return const CircularProgressIndicator();
               }
             },
           ),

@@ -12,12 +12,9 @@ class WeatherBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<WeatherBloc, WeatherState>(builder: (context, state) {
-
       // Wait to fetch weather by position display search box
       if (state is WeatherIsNotSearched) {
-        print('Hello');
         // See is location detected or not, if location detected ask weather bloc to get weather by position
         if (long != null || lat != null) {
           BlocProvider.of<WeatherBloc>(context)
@@ -72,7 +69,7 @@ class WeatherBuilder extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   child: TextButton(
                     onPressed: () {
@@ -107,12 +104,47 @@ class WeatherBuilder extends StatelessWidget {
       }
 
       //Display there is something went wrong while fetching data
-      else {
-        print('                Here                  ');
-        print(state);
-        return const Text(
-          'Error',
-          style: TextStyle(color: Colors.white),
+      else if (state is WeatherIsNotLoaded) {
+        return Column(
+          children: [
+            const Center(
+              child: Icon(
+                Icons.error_outline,
+                size: 80,
+                color: Color(0xFFFFFFFF),
+              ),
+            ),
+            SizedBox(height: 60,),
+            const Text(
+              'Something went wrong, Please try again!',
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Color(0xFFFFFFFF),
+                  fontWeight: FontWeight.w400),
+            ),
+            SizedBox(height: 50,),
+            ElevatedButton(
+                onPressed: () {
+                  if (long != null || lat != null) {
+                    BlocProvider.of<WeatherBloc>(context)
+                        .add(FetchWeatherByPosition(lat!, long!));
+                  }
+                },
+                child: const Text('Reload',style: TextStyle(fontSize: 20),),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 16,vertical: 4),
+                primary: Color(0xFFFF0000)
+              ),
+            )
+          ],
+        );
+      } else {
+        return Column(
+          children: const [
+            Center(
+              child: Icon(Icons.error_outline, size: 20),
+            )
+          ],
         );
       }
     });

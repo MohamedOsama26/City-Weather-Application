@@ -1,12 +1,11 @@
 import 'package:rive/rive.dart';
 
-RiveAnimation weatherIcon(String description,int sunrise,int sunset,int timeZone) {
+RiveAnimation weatherIcon(String description,num sunrise,num sunset,num timeZone) {
   bool morning;
 
-  DateTime sunriseTime = DateTime.fromMillisecondsSinceEpoch(sunrise * 1000);
-  DateTime sunsetTime = DateTime.fromMillisecondsSinceEpoch(sunset * 1000);
-  DateTime timeZoneTime = DateTime.fromMillisecondsSinceEpoch(timeZone * 1000);
-
+  DateTime sunriseTime = DateTime.fromMillisecondsSinceEpoch(sunrise.toInt() * 1000);
+  DateTime sunsetTime = DateTime.fromMillisecondsSinceEpoch(sunset.toInt() * 1000);
+  DateTime timeZoneTime = DateTime.fromMillisecondsSinceEpoch(timeZone.toInt() * 1000);
 
   if (DateTime.now().isAfter(sunriseTime) &&
       DateTime.now().isBefore(sunsetTime)) {
@@ -37,6 +36,7 @@ RiveAnimation weatherIcon(String description,int sunrise,int sunset,int timeZone
       return const RiveAnimation.asset('assets/scatterdclouds.riv');
 
     case 'broken clouds':
+    case 'overcast clouds':
       return const RiveAnimation.asset('assets/brokenclouds.riv');
 
     case 'shower rain':
@@ -60,6 +60,7 @@ RiveAnimation weatherIcon(String description,int sunrise,int sunset,int timeZone
       return const RiveAnimation.asset('assets/mist.riv');
 
     default:
-      return const RiveAnimation.asset('assets/WorldSpin.flr');
+      print('Description : $description');
+      return const RiveAnimation.asset('assets/sunny.riv');
   }
 }

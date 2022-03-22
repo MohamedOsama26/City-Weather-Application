@@ -13,13 +13,10 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     on<FetchWeather>((event, emit) async {
       emit(WeatherIsLoading());
       try {
-        print('number 1');
         final weather = await weatherRepo.getCurrentWeatherByName(event._city);
         emit(WeatherIsLoaded(weather));
       } catch (_) {
-        print('number 2');
-        print('In Bloc file:$_');
-        emit(WeatherIsNotLoaded());
+        emit(WeatherIsNotLoaded(_.toString()));
       }
     });
 
@@ -30,32 +27,13 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     on<FetchWeatherByPosition>((event, emit) async {
       emit(WeatherIsLoading());
       try {
-        print('number 3 ====>  ${event._lat} , ${event._long}');
         final weather = await weatherRepo.getCurrentWeatherByPosition(
             long: event._long, lat: event._lat);
-        print(weather.dataCalculatingTime);
         emit(WeatherIsLoaded(weather));
       } catch (_) {
-        print('number 4');
-        print('In Bloc file:$_');
-        emit(WeatherIsNotLoaded());
+        emit(WeatherIsNotLoaded(_.toString()));
       }
     });
   }
-  // Stream<WeatherState> mapEventToState(WeatherEvent event) async*{
-  //   if(event is FetchWeather){
-  //     yield WeatherIsLoading();
-  //     try{
-  //       WeatherModel weather = await weatherRepo.getWeather(event._city);
-  //       yield WeatherIsLoaded(weather);
-  //     }catch(_){
-  //       print(_);
-  //       yield WeatherIsNotLoaded();
-  //     }
-  //   }
-  //   else if (event is ResetWeather){
-  //     yield WeatherIsNotSearched();
-  //   }
-  // }
 
 }

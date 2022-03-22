@@ -1,6 +1,4 @@
-import 'package:city_weather/components/rive_animation.dart';
 import 'package:city_weather/data/location_reop.dart';
-import 'package:city_weather/data/weather_model.dart';
 import 'package:city_weather/data/weather_repo.dart';
 import 'package:city_weather/logic/location/location_bloc.dart';
 import 'package:city_weather/logic/weather/weather_bloc.dart';

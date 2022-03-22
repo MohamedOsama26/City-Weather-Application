@@ -11,7 +11,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   LocationRepo locationRepo;
   LocationBloc(this.locationRepo) : super(LocationInitial()) {
     on<FetchLocation>((event, emit) async {
-      emit(LocationInitial());
+      emit(LocationIsDisabled());
       try {
         final position = await locationRepo.getGeoLocationPosition();
         final details = await locationRepo.getAddressFromLatLong(position);
