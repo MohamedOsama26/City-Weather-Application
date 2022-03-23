@@ -1,3 +1,4 @@
+import 'package:city_weather/logic/location/location_bloc.dart';
 import 'package:city_weather/logic/weather/weather_bloc.dart';
 import 'package:city_weather/presentation/weather_details.dart';
 import 'package:flutter/material.dart';
@@ -82,6 +83,21 @@ class WeatherBuilder extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                BlocListener<LocationBloc, LocationState>(
+                  listener: (context, state) {
+
+                  },
+                  child: ElevatedButton(
+                    child: const Text('Search location'),
+                    onPressed: () {
+                      BlocProvider.of<LocationBloc>(context)
+                          .add(FetchLocation());
+                    },
+                  ),
+                ),
+
+
               ],
             ),
           );
@@ -124,16 +140,16 @@ class WeatherBuilder extends StatelessWidget {
             ),
             SizedBox(height: 50,),
             ElevatedButton(
-                onPressed: () {
-                  if (long != null || lat != null) {
-                    BlocProvider.of<WeatherBloc>(context)
-                        .add(FetchWeatherByPosition(lat!, long!));
-                  }
-                },
-                child: const Text('Reload',style: TextStyle(fontSize: 20),),
+              onPressed: () {
+                if (long != null || lat != null) {
+                  BlocProvider.of<WeatherBloc>(context)
+                      .add(FetchWeatherByPosition(lat!, long!));
+                }
+              },
+              child: const Text('Reload', style: TextStyle(fontSize: 20),),
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 16,vertical: 4),
-                primary: Color(0xFFFF0000)
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  primary: Color(0xFFFF0000)
               ),
             )
           ],

@@ -50,13 +50,6 @@ class _MainScreenState extends State<MainScreen> {
                 return Column(
                   children: [
                     WeatherBuilder(),
-                    ElevatedButton(
-                      child: const Text('Search location'),
-                      onPressed: () {
-                        BlocProvider.of<LocationBloc>(context)
-                            .add(FetchLocation());
-                      },
-                    ),
                   ],
                 );
               }
