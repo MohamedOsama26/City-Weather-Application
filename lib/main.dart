@@ -2,7 +2,7 @@ import 'package:city_weather/data/location_reop.dart';
 import 'package:city_weather/data/weather_repo.dart';
 import 'package:city_weather/logic/location/location_bloc.dart';
 import 'package:city_weather/logic/weather/weather_bloc.dart';
-import 'package:city_weather/presentation/main_screen.dart';
+import 'package:city_weather/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +32,10 @@ class WeatherApp extends StatelessWidget {
               create: (context) => LocationBloc(LocationRepo()),
             )
           ],
-          child: const MainScreen(),
+          // child: const MainScreen(),
+          // child: CustomPageView(),
+          // child: SpalshView(),
+          child: HomeScreen(),
         ),
       ),
     );

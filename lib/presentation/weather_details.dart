@@ -1,3 +1,4 @@
+// import 'package:city_weather/components/animated_bottom_bar/bottom_bar_navigation_pattern/custom_page_view.dart';
 import 'package:city_weather/components/rive_animation.dart';
 import 'package:city_weather/data/weather_model.dart';
 import 'package:flutter/material.dart';
@@ -40,12 +41,12 @@ class ShowWeather extends StatelessWidget {
               height: 16,
             ),
             Container(
+              color: Colors.green,
               height: 200,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    // color: Colors.green,
                     width: MediaQuery.of(context).size.width * 0.40,
                     height: 200,
                     child: Align(
@@ -162,6 +163,7 @@ class ShowWeather extends StatelessWidget {
                 ],
               ),
             ),
+
           ],
         ),
       ),
