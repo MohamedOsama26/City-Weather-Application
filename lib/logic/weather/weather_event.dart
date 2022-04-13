@@ -13,12 +13,13 @@ class FetchWeather extends WeatherEvent{
 }
 
 class FetchWeatherByPosition extends WeatherEvent{
-  final double _long;
-  final double _lat;
-  FetchWeatherByPosition(this._lat,this._long);
+  final double? long;
+  final double? lat;
+  final String? position;
+  FetchWeatherByPosition({this.lat, this.long, this.position});
 
   @override
-  List<Object> get props => [_long,_lat];
+  List<Object> get props => [];
 }
 
 class ResetWeather extends WeatherEvent{

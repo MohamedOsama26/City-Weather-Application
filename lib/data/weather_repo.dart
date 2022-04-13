@@ -14,10 +14,8 @@ class WeatherRepo {
   }
 
   Future<CurrentWeatherModel> getCurrentWeatherByPosition(
-      {required double long, required double lat}) async {
-    final result = await http.get(Uri.parse(
-        'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$long&appid=64f4f86c4b4de03d7464bee22ee4c94a'));
-    // print('In Result result ===============>>>>>  $result');
+      {double? long, double? lat, String? position}) async {
+    final result = await http.get(Uri.parse('http://api.weatherapi.com/v1/current.json?key=bcc6d1223814476ca73152654222803&q=$position&aqi=yes'));
     if (result.statusCode != 200) {
       throw Exception();
     }
@@ -26,8 +24,6 @@ class WeatherRepo {
 
   CurrentWeatherModel parsedJson(final response) {
     final jsonDecoded = json.decode(response);
-    // print(jsonDecoded);
-    // print('=======');
     return CurrentWeatherModel.fromJson(jsonDecoded);
   }
 }

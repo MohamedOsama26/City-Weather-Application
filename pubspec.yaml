@@ -39,6 +39,10 @@ dependencies:
   android_intent: ^2.0.2
   geocoding: ^2.0.4
   get: ^4.6.1
+  hydrated_bloc: ^8.1.0
+  path_provider: ^2.0.9
+  intl: ^0.17.0
+#  services: ^0.0.1
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -66,7 +70,7 @@ flutter:
   uses-material-design: true
 
   assets:
-#    - assets/
+    - assets/images/
     - assets/ecc_intro.riv
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -87,20 +91,25 @@ flutter:
   fonts:
     - family: Yanone Kaffeesatz
       fonts:
-        - asset: assets/fonts/YanoneKaffeesatz-Bold.ttf
-        - asset: assets/fonts/YanoneKaffeesatz-Regular.ttf
-        - asset: assets/fonts/YanoneKaffeesatz-Medium.ttf
-        - asset: assets/fonts/YanoneKaffeesatz-Light.ttf
-        - asset: assets/fonts/YanoneKaffeesatz-ExtraLight.ttf
+        - asset: assets/fonts/yanonekaffeesatz/YanoneKaffeesatz-Bold.ttf
+        - asset: assets/fonts/yanonekaffeesatz/YanoneKaffeesatz-Regular.ttf
+        - asset: assets/fonts/yanonekaffeesatz/YanoneKaffeesatz-Medium.ttf
+        - asset: assets/fonts/yanonekaffeesatz/YanoneKaffeesatz-Light.ttf
+        - asset: assets/fonts/yanonekaffeesatz/YanoneKaffeesatz-ExtraLight.ttf
           weight: 200
-        - asset: assets/fonts/YanoneKaffeesatz-SemiBold.ttf
+        - asset: assets/fonts/yanonekaffeesatz/YanoneKaffeesatz-SemiBold.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+    - family: Cuprum
+      fonts:
+        - asset: assets/fonts/cuprum/Cuprum-Bold.ttf
+        - asset: assets/fonts/cuprum/Cuprum-BoldItalic.ttf
+        - asset: assets/fonts/cuprum/Cuprum-Italic.ttf
+        - asset: assets/fonts/cuprum/Cuprum-Medium.ttf
+        - asset: assets/fonts/cuprum/Cuprum-MediumItalic.ttf
+        - asset: assets/fonts/cuprum/Cuprum-Regular.ttf
+        - asset: assets/fonts/cuprum/Cuprum-SemiBold.ttf
+        - asset: assets/fonts/cuprum/Cuprum-SemiBoldItalic.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

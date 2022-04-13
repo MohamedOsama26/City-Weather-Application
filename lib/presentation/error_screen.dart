@@ -31,10 +31,10 @@ class ErrorScreen extends StatelessWidget{
         SizedBox(height: 50,),
         ElevatedButton(
           onPressed: () {
-            if (long != null || lat != null) {
-              BlocProvider.of<WeatherBloc>(context)
-                  .add(FetchWeatherByPosition(lat!, long!));
-            }
+            // if (long != null || lat != null) {
+            //   BlocProvider.of<WeatherBloc>(context)
+            //       .add(FetchWeatherByPosition(lat!, long!));
+            // }
           },
           child: const Text('Reload', style: TextStyle(fontSize: 20),),
           style: ElevatedButton.styleFrom(

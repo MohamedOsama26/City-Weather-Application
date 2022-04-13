@@ -1,96 +1,139 @@
+import 'package:city_weather/components/location_app_bar.dart';
+import 'package:city_weather/logic/theme/theme_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen(
+      {Key? key,
+      required this.controller,
+      required this.icon,
+      required this.description,
+      required this.lastUpdated,
+      required this.region,
+      required this.temp})
+      : super(key: key);
+
+  final PageController controller;
+  final String region;
+  final DateTime lastUpdated;
+  final double temp;
+  final String icon;
+  final String description;
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(25),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  alignment: Alignment.centerLeft,
+    return BlocBuilder<ThemeBloc, ThemeState>(
+      builder: (context, state) {
+        return Container(
+          margin: const EdgeInsets.all(25),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 25,
+              ),
+              LocationAppBar(region: widget.region),
+              const SizedBox(
+                height: 30,
+              ),
+              Text('in sync',
+                  style: TextStyle(
+                      color: state.isDark ? Colors.white : Colors.black,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18)),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(DateFormat.yMMMd().format(widget.lastUpdated),
+                  style: TextStyle(
+                      fontFamily: 'Cuprum',
+                      color: state.isDark ? Colors.white : Colors.black,
+                      letterSpacing: 2,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 22)),
+              const SizedBox(
+                height: 50,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    width: 30,
+                  ),
+                  Text(
+                    widget.temp.toString(),
+                    style: TextStyle(
+                        fontFamily: 'cuprum',
+                        color: state.isDark ? Colors.white : Colors.black,
+                        letterSpacing: 2,
+                        fontSize: 100),
+                  ),
+                  Text('°C',
+                      style: TextStyle(
+                          color: state.isDark ? Colors.white : Colors.black,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2,
+                          fontSize: 40))
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Image.network(
+                widget.icon,
+                fit: BoxFit.fitWidth,
+                height: 150,
+              ),
+              Text(
+                widget.description,
+                style: TextStyle(
+                    color: state.isDark ? Colors.white : Colors.black,
+                    letterSpacing: 2,
+                    fontSize: 30),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              const Spacer(),
+              InkWell(
+                child: Container(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Ismailia',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            fontSize: 35,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Yanone Kaffeesatz',
-                            letterSpacing: 1),
-                      ),
                       Text(
-                        'Current Location',
+                        'Details',
                         style: TextStyle(
-                            fontFamily: 'Yanone Kaffeesatz',
-                            color: Colors.black.withOpacity(0.7),
-                            letterSpacing: 2,
+                            color: state.isDark ? Colors.white : Colors.black,
+                            letterSpacing: 1,
                             fontSize: 15),
+                      ),
+                      Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: state.isDark ? Colors.white : Colors.black,
                       )
                     ],
                   ),
                 ),
-                Container(
-                  child: Row(
-                    children: [
-                      InkWell(
-                        child: Icon(
-                          Icons.map_outlined,
-                          size: 30,
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                        onTap: (){},
-                        splashColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      InkWell(
-                          child: Icon(
-                        Icons.settings_outlined,
-                        size: 30,
-                        color: Colors.black.withOpacity(0.5),
-                      ),
-                        splashColor: Colors.transparent,
-                        onTap: (){},
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          Text('in sync'),
-          Text('Friday, 25 December 2022'),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-            Text('22'),
-            Text('°C')
-          ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(child: Row(children: [Icon(Icons.arrow_downward),Text('16°C')],),),
-              SizedBox(width: 20,),
-              Container(child: Row(children: [Icon(Icons.arrow_upward),Text('16°C')],),)
+                onTap: () {
+                  // Navigator.push(context, MaterialPageRoute(builder: (context)=> const DetailsScreen()));
+                  setState(() {
+                    widget.controller.animateToPage(1,
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.easeInOutSine);
+                  });
+                },
+              ),
             ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
