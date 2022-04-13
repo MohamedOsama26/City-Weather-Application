@@ -1,12 +1,12 @@
 import 'package:city_weather/components/daily_forecast_item.dart';
 import 'package:city_weather/components/hourly_forcast_item.dart';
 import 'package:city_weather/components/location_app_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ForecastScreen extends StatelessWidget {
-  const ForecastScreen({Key? key, }) : super(key: key);
-
+  const ForecastScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,49 +15,45 @@ class ForecastScreen extends StatelessWidget {
         margin: const EdgeInsets.only(right: 25, left: 25, top: 25),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
-            LocationAppBar(region: 'ismailia'),
-            SizedBox(
+            const LocationAppBar(region: 'ismailia'),
+            const SizedBox(
               height: 40,
             ),
             Container(
               width: double.infinity,
-              // color: Colors.red,
-              child: Text(
+              child: const Text(
                 'Forecast',
                 style: TextStyle(
-                    fontFamily: 'Yanone Kaffeesatz',
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
                     letterSpacing: 2,
                     fontSize: 45),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
-            Align(
+            const Align(
               alignment: Alignment.centerLeft,
               child: Text('Hourly Forecast',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w500,
-                    fontFamily: 'Yanone Kaffeesatz',
                     letterSpacing: 1,
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
               height: 150,
-              // color: Colors.blue,
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: [
+                children: const [
                   HourlyForecastItem(),
                   HourlyForecastItem(),
                   HourlyForecastItem(),
@@ -65,28 +61,27 @@ class ForecastScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
-            Align(
+            const Align(
               alignment: Alignment.centerLeft,
               child: Text('Daily Forecast',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w500,
-                    fontFamily: 'Yanone Kaffeesatz',
                     letterSpacing: 1,
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
               height: 180,
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: [
+                children: const [
                   DailyForecastItem(),
                   DailyForecastItem(),
                   DailyForecastItem(),

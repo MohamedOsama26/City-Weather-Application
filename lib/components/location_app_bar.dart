@@ -1,5 +1,4 @@
 import 'package:city_weather/logic/theme/theme_bloc.dart';
-import 'package:city_weather/presentation/location_screen.dart';
 import 'package:city_weather/presentation/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,30 +16,33 @@ class LocationAppBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      region,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: state.isDark ? Colors.white : Colors.black,
+              Expanded(
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        region,
+                        textAlign: TextAlign.left,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: state.isDark ? Colors.white : Colors.black,
                           fontSize: 35,
                           fontWeight: FontWeight.w500,
-                          fontFamily: 'Yanone Kaffeesatz',
-                          letterSpacing: 1),
-                    ),
-                    Text(
-                      'Current Location',
-                      style: TextStyle(
-                          fontFamily: 'Yanone Kaffeesatz',
+                          letterSpacing: 1,
+                        ),
+                      ),
+                      Text(
+                        'Current Location',
+                        style: TextStyle(
                           color: state.isDark ? Colors.white : Colors.black,
                           letterSpacing: 2,
-                          fontSize: 15),
-                    )
-                  ],
+                          fontSize: 15,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -70,8 +72,12 @@ class LocationAppBar extends StatelessWidget {
                       ),
                       splashColor: Colors.transparent,
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (
-                            context) => SettingsScreen()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SettingsScreen(),
+                          ),
+                        );
                       },
                     ),
                   ],

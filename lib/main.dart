@@ -1,14 +1,10 @@
 import 'dart:io';
-
-// import 'package:city_weather/data/location_reop.dart';
-import 'package:city_weather/components/const.dart';
 import 'package:city_weather/data/location_reop.dart';
 import 'package:city_weather/data/weather_repo.dart';
 import 'package:city_weather/logic/address/address_bloc.dart';
 import 'package:city_weather/logic/location/location_bloc.dart';
 import 'package:city_weather/logic/theme/theme_bloc.dart';
 import 'package:city_weather/logic/weather/weather_bloc.dart';
-import 'package:city_weather/presentation/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,13 +36,10 @@ class WeatherApp extends StatelessWidget {
         BlocProvider(
           create: (context) => LocationBloc(LocationRepo()),
         ),
-        BlocProvider(
-            create: (context) => AddressBloc()
-        ),
+        BlocProvider(create: (context) => AddressBloc()),
         BlocProvider(create: (context) => ThemeBloc()),
       ],
-
-      child: AppView(),
+      child: const AppView(),
     );
   }
 }
@@ -58,15 +51,12 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AddressBloc, AddressState>(
       builder: (context, state) {
-        print('Address State: $state');
         return MaterialApp(
           theme: ThemeData(
               primarySwatch: Colors.grey,
               visualDensity: VisualDensity.adaptivePlatformDensity,
-              fontFamily: 'Yanone Kaffeesatz'
-          ),
+              fontFamily: 'Yanone Kaffeesatz'),
           debugShowCheckedModeBanner: false,
-          // debugShowMaterialGrid: true,
           home: BlocBuilder<ThemeBloc, ThemeState>(
             builder: (context, state) {
               return const SpalshView(duration: 4);

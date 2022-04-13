@@ -73,7 +73,7 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar>
           decoration: BoxDecoration(
               color:
                   isSelected ? item.color.withOpacity(0.4) : Colors.transparent,
-              borderRadius: BorderRadius.all(Radius.circular(30))),
+              borderRadius: const BorderRadius.all(Radius.circular(30))),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailsScreen extends StatefulWidget {
-  DetailsScreen({Key? key,
-    required this.controller,
-    required this.region,
-    required this.precipitation,
-    required this.windKph,
-    required this.windDir,
-    required this.visibility,
-    required this.pressure, required this.uv, required this.humidity})
+  DetailsScreen(
+      {Key? key,
+      required this.controller,
+      required this.region,
+      required this.precipitation,
+      required this.windKph,
+      required this.windDir,
+      required this.visibility,
+      required this.pressure,
+      required this.uv,
+      required this.humidity})
       : super(key: key);
 
   final String region;
@@ -39,27 +42,25 @@ class _DetailsScreenState extends State<DetailsScreen> {
             margin: const EdgeInsets.only(right: 25, left: 25, top: 25),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 LocationAppBar(region: widget.region),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Container(
                   width: double.infinity,
-                  // color: Colors.red,
                   child: Text(
                     'Details',
                     style: TextStyle(
-                        fontFamily: 'Yanone Kaffeesatz',
                         color: state.isDark ? Colors.white : Colors.black,
                         fontWeight: FontWeight.w500,
                         letterSpacing: 2,
                         fontSize: 45),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Container(
@@ -73,7 +74,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           'Precipitation',
                           // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w500,
                               letterSpacing: 1,
@@ -96,7 +96,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Container(
@@ -108,9 +108,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '${widget.windDir} Wind',
-                          // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w500,
                               letterSpacing: 1,
@@ -121,7 +119,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '${widget.windKph} km/h',
-                          // textAlign: TextAlign.left,
                           style: TextStyle(
                               fontFamily: 'Cuprum',
                               color: state.isDark ? Colors.white : Colors.black,
@@ -133,7 +130,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Container(
@@ -147,7 +144,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           'Humidity',
                           // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w500,
                               letterSpacing: 1,
@@ -170,7 +166,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Container(
@@ -182,9 +178,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'Visibility',
-                          // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w500,
                               letterSpacing: 1,
@@ -207,7 +201,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Container(
@@ -219,9 +213,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'UV',
-                          // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w500,
                               letterSpacing: 1,
@@ -244,7 +236,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Container(
@@ -258,7 +250,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           'Pressure',
                           // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w500,
                               letterSpacing: 1,
@@ -269,7 +260,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '${widget.pressure} hPa',
-                          // textAlign: TextAlign.left,
                           style: TextStyle(
                               fontFamily: 'Cuprum',
                               color: state.isDark ? Colors.white : Colors.black,
@@ -281,7 +271,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
               ],
             ),
           ),
@@ -310,5 +300,4 @@ class _DetailsScreenState extends State<DetailsScreen> {
         return 'uv index is $uv';
     }
   }
-
 }

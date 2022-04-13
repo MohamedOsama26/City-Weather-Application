@@ -11,16 +11,13 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   LocationRepo locationRepo;
   LocationBloc(this.locationRepo) : super(LocationInitial()) {
     on<FetchLocation>((event, emit) async {
-      print("Fetch");
       emit(LocationIsDisabled());
       try {
         final position = await locationRepo.getGeoLocationPosition();
         final details = await locationRepo.getAddressFromLatLong(position);
         emit(LocationIsLoaded(position, details));
-        print(position);
       } catch (_) {
         emit(LocationIsDisabled());
-        print('In Location BLoC File: $_');
       }
     });
   }

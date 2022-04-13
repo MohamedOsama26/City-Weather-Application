@@ -36,10 +36,10 @@ class _CustomPageViewState
             });
           },
           children: [
-            Container(color: widget.barItems[selectedBarIndex].color,child: Center(child: Text('0')),),
-            Container(color: widget.barItems[selectedBarIndex].color,child: Center(child: Text('1')),),
-            Container(color: widget.barItems[selectedBarIndex].color,child: Center(child: Text('2')),),
-            Container(color: widget.barItems[selectedBarIndex].color,child: Center(child: Text('3')),),
+            Container(color: widget.barItems[selectedBarIndex].color,child: const Center(child: Text('0')),),
+            Container(color: widget.barItems[selectedBarIndex].color,child: const Center(child: Text('1')),),
+            Container(color: widget.barItems[selectedBarIndex].color,child: const Center(child: Text('2')),),
+            Container(color: widget.barItems[selectedBarIndex].color,child: const Center(child: Text('3')),),
           ],
         ),
         Positioned(
@@ -47,7 +47,7 @@ class _CustomPageViewState
           right: 0,
           left: 0,
           child: Container(
-            margin: EdgeInsets.all(8),
+            margin: const EdgeInsets.all(8),
             child: AnimatedBottomBar(
                 barItems: widget.barItems,
                 animationDuration: const Duration(milliseconds: 100),
@@ -60,7 +60,7 @@ class _CustomPageViewState
                     print(index);
                     selectedBarIndex = index;
                     // if(pageController.hasClients){
-                      pageController.animateToPage(selectedBarIndex,duration: Duration(milliseconds: 25),curve: Curves.easeInOut);
+                      pageController.animateToPage(selectedBarIndex,duration: const Duration(milliseconds: 25),curve: Curves.easeInOut);
                     // }
 
                   });

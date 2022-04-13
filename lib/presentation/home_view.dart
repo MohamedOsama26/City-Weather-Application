@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({Key? key, this.city}) : super(key: key);
+
+  final String? city;
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -17,15 +19,18 @@ class _HomeViewState extends State<HomeView> {
   int pageIndex = 0;
   late PageController pageController;
   late String? position;
-  double? lat, lon;
 
   @override
   void initState() {
     super.initState();
     pageController = PageController(initialPage: pageIndex);
     position = BlocProvider.of<AddressBloc>(context).state.position;
-    BlocProvider.of<WeatherBloc>(context)
-        .add(FetchWeatherByPosition(position: position));
+    if (position != null) {
+      BlocProvider.of<WeatherBloc>(context)
+          .add(FetchWeatherByPosition(position: position));
+    } else if (widget.city != null) {
+      BlocProvider.of<WeatherBloc>(context).add(FetchWeather(widget.city!));
+    }
   }
 
   @override
@@ -37,9 +42,7 @@ class _HomeViewState extends State<HomeView> {
           body: BlocBuilder<WeatherBloc, WeatherState>(
             builder: (context, state) {
               if (state is WeatherIsNotLoaded) {
-                // print(state.getError);
-                // print(state);
-                return const Text('Error');
+                return const Center(child: Text('Error'));
               } else if (state is WeatherIsLoaded) {
                 return PageView(
                   controller: pageController,

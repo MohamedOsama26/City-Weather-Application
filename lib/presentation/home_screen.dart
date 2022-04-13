@@ -42,22 +42,28 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 30,
               ),
-              Text('in sync',
-                  style: TextStyle(
-                      color: state.isDark ? Colors.white : Colors.black,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18)),
+              Text(
+                'in sync',
+                style: TextStyle(
+                  color: state.isDark ? Colors.white : Colors.black,
+                  letterSpacing: 1,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                ),
+              ),
               const SizedBox(
                 height: 15,
               ),
-              Text(DateFormat.yMMMd().format(widget.lastUpdated),
-                  style: TextStyle(
-                      fontFamily: 'Cuprum',
-                      color: state.isDark ? Colors.white : Colors.black,
-                      letterSpacing: 2,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 22)),
+              Text(
+                DateFormat.yMMMd().format(widget.lastUpdated),
+                style: TextStyle(
+                  fontFamily: 'Cuprum',
+                  color: state.isDark ? Colors.white : Colors.black,
+                  letterSpacing: 2,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 22,
+                ),
+              ),
               const SizedBox(
                 height: 50,
               ),
@@ -71,17 +77,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     widget.temp.toString(),
                     style: TextStyle(
-                        fontFamily: 'cuprum',
-                        color: state.isDark ? Colors.white : Colors.black,
-                        letterSpacing: 2,
-                        fontSize: 100),
+                      fontFamily: 'cuprum',
+                      color: state.isDark ? Colors.white : Colors.black,
+                      letterSpacing: 2,
+                      fontSize: 100,
+                    ),
                   ),
-                  Text('°C',
-                      style: TextStyle(
-                          color: state.isDark ? Colors.white : Colors.black,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 2,
-                          fontSize: 40))
+                  Text(
+                    '°C',
+                    style: TextStyle(
+                      color: state.isDark ? Colors.white : Colors.black,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2,
+                      fontSize: 40,
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -95,9 +105,10 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(
                 widget.description,
                 style: TextStyle(
-                    color: state.isDark ? Colors.white : Colors.black,
-                    letterSpacing: 2,
-                    fontSize: 30),
+                  color: state.isDark ? Colors.white : Colors.black,
+                  letterSpacing: 2,
+                  fontSize: 30,
+                ),
               ),
               const SizedBox(
                 height: 40,
@@ -110,9 +121,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         'Details',
                         style: TextStyle(
-                            color: state.isDark ? Colors.white : Colors.black,
-                            letterSpacing: 1,
-                            fontSize: 15),
+                          color: state.isDark ? Colors.white : Colors.black,
+                          letterSpacing: 1,
+                          fontSize: 15,
+                        ),
                       ),
                       Icon(
                         Icons.keyboard_arrow_down_rounded,
@@ -122,11 +134,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=> const DetailsScreen()));
                   setState(() {
-                    widget.controller.animateToPage(1,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeInOutSine);
+                    widget.controller.animateToPage(
+                      1,
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.easeInOutSine,
+                    );
                   });
                 },
               ),

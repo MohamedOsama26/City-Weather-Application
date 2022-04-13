@@ -1,48 +1,79 @@
 import 'package:city_weather/components/location_item.dart';
+import 'package:city_weather/logic/theme/theme_bloc.dart';
+import 'package:city_weather/logic/weather/weather_bloc.dart';
 import 'package:city_weather/presentation/add_city_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LocationScreen extends StatelessWidget {
+class LocationScreen extends StatefulWidget {
   const LocationScreen({Key? key}) : super(key: key);
 
   @override
+  State<LocationScreen> createState() => _LocationScreenState();
+}
+
+class _LocationScreenState extends State<LocationScreen> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<WeatherBloc>(context).add(FetchWeatherByPosition());
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-          child: Container(
-            margin: EdgeInsets.symmetric(vertical: 25,horizontal: 25),
+    return BlocBuilder<ThemeBloc, ThemeState>(
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: state.isDark ? Colors.black : Colors.white,
+          body: SingleChildScrollView(
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 25, horizontal: 25),
               child: Column(
                 children: [
-                  SizedBox(height: 50,),
+                  const SizedBox(
+                    height: 50,
+                  ),
                   Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
-                          child: Icon(Icons.arrow_back_ios,color: Colors.black.withOpacity(0.5),size: 17,),
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: state.isDark ? Colors.white : Colors.black,
+                          ),
                           onTap: () => Navigator.pop(context),
                         ),
-                        SizedBox(width: 8,),
+                        const SizedBox(
+                          width: 8,
+                        ),
                         Container(
-                          // alignment: Alignment.centerLeft,
-                          child: const Text(
+                          child: Text(
                             'Select City',
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 fontSize: 28,
                                 fontWeight: FontWeight.w500,
-                                fontFamily: 'Yanone Kaffeesatz',
-                                color: Colors.black45,
+                                color:
+                                    state.isDark ? Colors.white : Colors.black,
                                 letterSpacing: 1),
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         InkWell(
                           child: Container(
-                            child: Icon(Icons.add,color: Colors.black.withOpacity(0.5)),
+                            child: Icon(
+                              Icons.add,
+                              color: state.isDark ? Colors.white : Colors.black,
+                            ),
                           ),
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => AddCityScreen()));
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const AddCityScreen(),
+                              ),
+                            );
                           },
                         ),
                       ],
@@ -50,40 +81,55 @@ class LocationScreen extends StatelessWidget {
                   ),
                   InkWell(
                     child: Container(
-                      // color: Colors.green,
-                      padding: EdgeInsets.symmetric(vertical: 4,horizontal: 8),
-                      margin: EdgeInsets.only(top: 22),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 4,
+                        horizontal: 8,
+                      ),
+                      margin: const EdgeInsets.only(top: 22),
                       child: Row(
                         children: [
-                          Icon(Icons.gps_fixed,color: Colors.black.withOpacity(0.5),),
-                          SizedBox(width: 4,),
-                          Text('Get current location by GPS',style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
-                              color: Colors.black.withOpacity(0.7),
+                          Icon(
+                            Icons.gps_fixed,
+                            color: state.isDark ? Colors.white : Colors.black,
+                          ),
+                          const SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            'Get current location by GPS',
+                            style: TextStyle(
+                              color: state.isDark ? Colors.white : Colors.black,
                               letterSpacing: 2,
-                              fontSize: 15))
+                              fontSize: 15,
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                    onTap: (){
-                      print('GPS');
-                    },
+                    // onTap: () {
+                    //   print('GPS');
+                    // },
                   ),
                   SizedBox(
-                    // color: Colors.blue,
-                    height: MediaQuery.of(context).size.height-100,
-                    child: ListView(
-                      children: [
-                        LocationItem(),
-                        LocationItem(),
-                        LocationItem(),
-                      ],
+                    height: MediaQuery.of(context).size.height - 100,
+                    child: BlocBuilder<WeatherBloc, WeatherState>(
+                      builder: (weatherContext, weatherState) {
+                        return ListView(
+                          children: const [
+                            LocationItem(),
+                            LocationItem(),
+                            LocationItem(),
+                          ],
+                        );
+                      },
                     ),
                   ),
                 ],
-              )
+              ),
+            ),
           ),
-      ),
+        );
+      },
     );
   }
 }

@@ -3,10 +3,11 @@ import 'package:city_weather/logic/weather/weather_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SearchScreen extends StatelessWidget{
+class SearchScreen extends StatelessWidget {
   final TextEditingController cityController;
 
-   const SearchScreen({Key? key,required this.cityController}) : super(key: key);
+  const SearchScreen({Key? key, required this.cityController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +41,13 @@ class SearchScreen extends StatelessWidget{
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                borderSide: BorderSide(
-                    color: Colors.white70, style: BorderStyle.solid),
+                borderSide:
+                    BorderSide(color: Colors.white70, style: BorderStyle.solid),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                borderSide: BorderSide(
-                    color: Colors.blue, style: BorderStyle.solid),
+                borderSide:
+                    BorderSide(color: Colors.blue, style: BorderStyle.solid),
               ),
               hintText: "City Name",
               hintStyle: TextStyle(color: Colors.white70),
@@ -68,24 +69,17 @@ class SearchScreen extends StatelessWidget{
               ),
             ),
           ),
-
           BlocListener<LocationBloc, LocationState>(
-            listener: (context, state) {
-
-            },
+            listener: (context, state) {},
             child: ElevatedButton(
               child: const Text('Search location'),
               onPressed: () {
-                BlocProvider.of<LocationBloc>(context)
-                    .add(FetchLocation());
+                BlocProvider.of<LocationBloc>(context).add(FetchLocation());
               },
             ),
           ),
-
-
         ],
       ),
     );
   }
-
 }

@@ -1,4 +1,3 @@
-import 'package:city_weather/logic/address/address_bloc.dart';
 import 'package:city_weather/logic/theme/theme_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +15,7 @@ class SettingsScreen extends StatelessWidget {
             padding: const EdgeInsets.all(25.0),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Container(
@@ -34,7 +33,7 @@ class SettingsScreen extends StatelessWidget {
                         ),
                         onTap: () => Navigator.pop(context),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       Container(
@@ -44,7 +43,6 @@ class SettingsScreen extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.w500,
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               letterSpacing: 1),
                         ),
@@ -52,7 +50,7 @@ class SettingsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 44,
                 ),
                 Container(
@@ -64,16 +62,14 @@ class SettingsScreen extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'Theme',
-                          // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w500,
                               letterSpacing: 1,
                               fontSize: 26),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       InkWell(
@@ -88,7 +84,6 @@ class SettingsScreen extends StatelessWidget {
                                       'Light Theme',
                                       // textAlign: TextAlign.left,
                                       style: TextStyle(
-                                          fontFamily: 'Yanone Kaffeesatz',
                                           color: state.isDark
                                               ? Colors.white
                                               : Colors.black,
@@ -97,7 +92,7 @@ class SettingsScreen extends StatelessWidget {
                                           fontSize: 22),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 8,
                                   ),
                                   Align(
@@ -105,7 +100,6 @@ class SettingsScreen extends StatelessWidget {
                                     child: Text(
                                       'Let There be Light!',
                                       style: TextStyle(
-                                          fontFamily: 'Yanone Kaffeesatz',
                                           color: state.isDark
                                               ? Colors.white
                                               : Colors.black,
@@ -117,18 +111,16 @@ class SettingsScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Spacer(),
-                            Icon(Icons.check,
-                                color: Colors.black),
+                            const Spacer(),
+                            const Icon(Icons.check, color: Colors.black),
                           ],
                         ),
                         onTap: () {
                           BlocProvider.of<ThemeBloc>(context)
                               .add(SetLightTheme());
-                          print('light');
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       InkWell(
@@ -141,9 +133,7 @@ class SettingsScreen extends StatelessWidget {
                                     alignment: Alignment.centerLeft,
                                     child: Text(
                                       'Dark Theme',
-                                      // textAlign: TextAlign.left,
                                       style: TextStyle(
-                                          fontFamily: 'Yanone Kaffeesatz',
                                           color: state.isDark
                                               ? Colors.white
                                               : Colors.black,
@@ -152,7 +142,7 @@ class SettingsScreen extends StatelessWidget {
                                           fontSize: 22),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 8,
                                   ),
                                   Align(
@@ -161,7 +151,6 @@ class SettingsScreen extends StatelessWidget {
                                       'Join the Dark Side!',
                                       // textAlign: TextAlign.left,
                                       style: TextStyle(
-                                          fontFamily: 'Yanone Kaffeesatz',
                                           color: state.isDark
                                               ? Colors.white
                                               : Colors.black,
@@ -173,22 +162,19 @@ class SettingsScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Spacer(),
-                            Icon(Icons.check,
-                                color: Colors.white
-                                ),
+                            const Spacer(),
+                            const Icon(Icons.check, color: Colors.white),
                           ],
                         ),
                         onTap: () {
                           BlocProvider.of<ThemeBloc>(context)
                               .add(SetDarkTheme());
-                          print('dark');
                         },
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 44,
                 ),
                 Container(
@@ -202,14 +188,13 @@ class SettingsScreen extends StatelessWidget {
                           'Feedback',
                           // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w500,
                               letterSpacing: 1,
                               fontSize: 26),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Align(
@@ -218,14 +203,13 @@ class SettingsScreen extends StatelessWidget {
                           'Report an Issue',
                           // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w700,
                               letterSpacing: 2,
                               fontSize: 22),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       Align(
@@ -234,14 +218,13 @@ class SettingsScreen extends StatelessWidget {
                           "Facing an issue? Report and we'll look into it.",
                           // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: Colors.black.withOpacity(0.5),
                               fontWeight: FontWeight.w700,
                               letterSpacing: 1,
                               fontSize: 14),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Align(
@@ -250,14 +233,13 @@ class SettingsScreen extends StatelessWidget {
                           'Rate on Play Store',
                           // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w700,
                               letterSpacing: 2,
                               fontSize: 22),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       Align(
@@ -266,7 +248,6 @@ class SettingsScreen extends StatelessWidget {
                           'Enjoying the app? Leave a review on the Play Store',
                           // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w700,
                               letterSpacing: 1,
@@ -276,7 +257,7 @@ class SettingsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 38,
                 ),
                 Container(
@@ -290,14 +271,13 @@ class SettingsScreen extends StatelessWidget {
                           'About',
                           // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w500,
                               letterSpacing: 1,
                               fontSize: 26),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Align(
@@ -306,14 +286,13 @@ class SettingsScreen extends StatelessWidget {
                           'About City Weather',
                           // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: state.isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w700,
                               letterSpacing: 2,
                               fontSize: 22),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       Align(
@@ -322,14 +301,13 @@ class SettingsScreen extends StatelessWidget {
                           "Facing an issue? Report and we'll look into it.",
                           // textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontFamily: 'Yanone Kaffeesatz',
                               color: Colors.black.withOpacity(0.5),
                               fontWeight: FontWeight.w700,
                               letterSpacing: 1,
                               fontSize: 14),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 24,
                       ),
                     ],
